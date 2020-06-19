@@ -36,7 +36,7 @@
                   <TableColumn fx:id="colDateOfCreation" prefWidth="100.0" text="dateOfCreation" />
                   <TableColumn fx:id="colCost" text="cost" />
                   <TableColumn fx:id="colDesc" text="Description" />
-                  <TableColumn fx:id="colChange" text="Изменить " />
+                  <TableColumn fx:id="colChange" text="Действие" />
               </columns>
             </TableView>
             <Button layoutX="357.0" layoutY="14.0" mnemonicParsing="false" text="Редактировать" />
