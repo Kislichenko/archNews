@@ -111,10 +111,7 @@ public class AdvertiserController {
                 };
 
                 editButton.setOnAction(event -> {
-                    System.out.println("GGGG: "+new Long(cell.getTableRow().getItem().toString().substring(
-                            cell.getTableRow().getItem().toString().indexOf("id=")+3,
-                            cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)
-                    )));
+
                     Main.setRequest(new Long(cell.getTableRow().getItem().toString().substring(
                             cell.getTableRow().getItem().toString().indexOf("id=")+3,
                             cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)

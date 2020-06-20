@@ -88,7 +88,6 @@ public class AdvertReqController {
     @FXML
     void initialize() {
 
-        System.out.println("FFFF: "+ Main.getRequest());
         if(Main.getRequest()!=-1l){
             Request request = requestService.findRequest(Main.getRequest());
             typeAdBlock.setValue(request.getAdBlockType());
