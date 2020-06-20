@@ -14,7 +14,6 @@ public class RequestDAO {
     public List<Request> getRequests(){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-
         List <Request> reuquests = loadAllData(Request.class, session);
         tx1.commit();
         session.close();
