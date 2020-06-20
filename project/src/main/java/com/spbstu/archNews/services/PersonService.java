@@ -27,5 +27,15 @@ public class PersonService {
         usersDao.update(user);
     }
 
+    public boolean auth(String login, String password){
+        Person person = usersDao.findByLogin(login);
+        if(person.getPassword().equals(password)){
+            return true;
+        }
+        return false;
+
+
+    }
+
 
 }

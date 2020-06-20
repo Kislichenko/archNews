@@ -1,15 +1,20 @@
-package com.spbstu.archNews;
+package com.spbstu.archNews.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.spbstu.archNews.Main;
 import com.spbstu.archNews.models.Request;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -60,21 +65,21 @@ public class AdvertiserController {
 
             Request request = new Request();
             request.setCost(100);
-            request.setDateOfCreation("Dfg");
-            request.setName("name"+i);
+            request.setAdDuration(10);
+            request.setStatus("name"+i);
             request.setStatus("closed");
             list.add(request);
         }
 
         //colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colName.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
-                -> new SimpleStringProperty(param.getValue().getName()));
+                -> new SimpleStringProperty(param.getValue().getStatus()));
 
         colStatus.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
                 -> new SimpleStringProperty(param.getValue().getStatus()));
 
         colDateOfCreation.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
-                -> new SimpleStringProperty(param.getValue().getDateOfCreation()));
+                -> new SimpleStringProperty(param.getValue().getStatus()));
 
         colCost.setCellValueFactory((TableColumn.CellDataFeatures<Request, Number> param)
                 -> new SimpleIntegerProperty(param.getValue().getCost()));
@@ -99,15 +104,16 @@ public class AdvertiserController {
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
                         btn.getStyleClass().add("btn-default");
-//                        btn.setOnAction(event -> {
-//                            Request col = getTableView().getItems().get(getIndex());
-//                            Lesson lessonOld = new Lesson(lesson);
-//                            try {
-//                                Main.clientOnLessonView(login, name, status, lessonOld, col);
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
-//                        });
+                        btn.setOnAction(event -> {
+                            Parent newScene = null;
+                            try {
+                                newScene = FXMLLoader.load(getClass().getResource("/advertReq.fxml"));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            Main.getStage().setScene(new Scene(newScene));
+                        });
                         setGraphic(btn);
                         setText(null);
                     }

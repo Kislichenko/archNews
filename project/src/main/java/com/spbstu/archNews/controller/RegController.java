@@ -1,4 +1,4 @@
-package com.spbstu.archNews;
+package com.spbstu.archNews.controller;
 
 
 import java.net.URL;

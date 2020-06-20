@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spbstu.archNews.AdvertiserController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spbstu.archNews.controller.AdvertiserController">
   <children>
       <AnchorPane prefHeight="82.0" prefWidth="640.0" style="-fx-background-color: #333;">
          <children>
@@ -37,6 +37,7 @@
                   <TableColumn fx:id="colCost" text="cost" />
                   <TableColumn fx:id="colDesc" text="Description" />
                   <TableColumn fx:id="colChange" text="Действие" />
+                  <TableColumn fx:id="colChange1" text="Оплата" />
               </columns>
             </TableView>
             <Button layoutX="357.0" layoutY="14.0" mnemonicParsing="false" text="Редактировать" />

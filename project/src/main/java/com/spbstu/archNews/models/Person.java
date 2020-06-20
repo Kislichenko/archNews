@@ -2,6 +2,7 @@ package com.spbstu.archNews.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class Person {
 
     @Id
@@ -23,16 +25,25 @@ public class Person {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
+
+    @Column(name = "password")
     private String password;
 
-    public Person(String login, String name, String email){
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private PersonType typeOfUser;
+
+
+    public Person(String login, String name, String email, String phoneNumber, String password, PersonType typeOfUser){
         this.login = login;
         this.email = email;
         this.name = name;
-    }
-    public void auth(){
-
+        this.phoneNumber = phoneNumber;
+        this.password=password;
+        this.typeOfUser = typeOfUser;
     }
 
     public boolean isAuth(){
