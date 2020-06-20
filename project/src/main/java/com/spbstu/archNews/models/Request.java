@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
+@Entity
 @Table(name = "requests")
 @NoArgsConstructor
-@AllArgsConstructor
 public class Request {
 
     @Id
@@ -38,13 +38,33 @@ public class Request {
     @Column(name = "cost")
     private Integer cost;
 
-    @Column(name = "person")
-    private Person person;
+    //@Column(name = "person")
+    //private Person person;
 
     @Column(name = "type")
     private String type;
 
     @Column(name = "description")
-    private String desciption;
+    private String description;
+
+    public Request(AdBlockType adBlockType,
+                   Integer adDuration,
+                   String startDate,
+                   String legalData,
+                   String status,
+                   String openAdDate,
+                   Integer cost,
+                   String type,
+                   String description){
+        this.adBlockType = adBlockType;
+        this.adDuration = adDuration;
+        this.startDate = startDate;
+        this.legalData = legalData;
+        this.status=status;
+        this.openAdDate = openAdDate;
+        this.cost = cost;
+        this.type = type;
+        this.description = description;
+    }
 
 }

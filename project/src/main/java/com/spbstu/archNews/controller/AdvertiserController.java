@@ -3,10 +3,12 @@ package com.spbstu.archNews.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.spbstu.archNews.Main;
 import com.spbstu.archNews.models.Request;
+import com.spbstu.archNews.services.RequestService;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import javafx.util.Callback;
 
 public class AdvertiserController {
     ObservableList list = FXCollections.observableArrayList();
+    RequestService requestService = new RequestService();
 
     @FXML
     private ResourceBundle resources;
@@ -50,6 +53,15 @@ public class AdvertiserController {
     @FXML
     private TableColumn<Request, String> colChange;
 
+    @FXML
+    private TableColumn<Request, String> colChange1;
+
+    @FXML
+    private Button logOutBut;
+
+    @FXML
+    private Button createNew;
+
 
     @FXML
     void initialize() {
@@ -61,31 +73,134 @@ public class AdvertiserController {
 
 
         list.removeAll(list);
-        for(int i=0;i<30;i++) {
+        List<Request> requests = requestService.getAll();
 
-            Request request = new Request();
-            request.setCost(100);
-            request.setAdDuration(10);
-            request.setStatus("name"+i);
-            request.setStatus("closed");
-            list.add(request);
+        if(requests != null && requests.size()!=0) {
+            list.addAll(requests);
+
+            colName.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
+                    -> new SimpleStringProperty(param.getValue().getId().toString()));
+
+            colStatus.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
+                    -> new SimpleStringProperty(param.getValue().getLegalData()));
+
+            colDateOfCreation.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
+                    -> new SimpleStringProperty(param.getValue().getOpenAdDate()));
+
+
+            colCost.setCellValueFactory((TableColumn.CellDataFeatures<Request, Number> param)
+                    -> new SimpleIntegerProperty(param.getValue().getCost()));
+
+            colDesc.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
+                    -> new SimpleStringProperty(param.getValue().getStatus()));
+
+
+
+            colChange.setCellFactory(col -> {
+                Button editButton = new Button("Подробнее");
+                TableCell<Request, String> cell = new TableCell<Request, String>() {
+                    @Override
+                    public void updateItem(String request, boolean empty) {
+                        super.updateItem(request, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(editButton);
+                        }
+                    }
+                };
+
+                editButton.setOnAction(event -> {
+                    System.out.println("GGGG: "+new Long(cell.getTableRow().getItem().toString().substring(
+                            cell.getTableRow().getItem().toString().indexOf("id=")+3,
+                            cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)
+                    )));
+                    Main.setRequest(new Long(cell.getTableRow().getItem().toString().substring(
+                            cell.getTableRow().getItem().toString().indexOf("id=")+3,
+                            cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)
+                    )));
+
+                    Parent newScene = null;
+                    try {
+                        newScene = FXMLLoader.load(getClass().getResource("/advertReq.fxml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Main.getStage().setScene(new Scene(newScene));
+                });
+
+                return cell ;
+            });
+            //setBtnEditCellFactory();
         }
 
-        //colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colName.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
-                -> new SimpleStringProperty(param.getValue().getStatus()));
 
-        colStatus.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
-                -> new SimpleStringProperty(param.getValue().getStatus()));
+        colChange1.setCellFactory(col -> {
+            Button editButton = new Button("Оплатить");
+            TableCell<Request, String> cell = new TableCell<Request, String>() {
+                @Override
+                public void updateItem(String request, boolean empty) {
+                    super.updateItem(request, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(editButton);
+                    }
+                }
+            };
 
-        colDateOfCreation.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
-                -> new SimpleStringProperty(param.getValue().getStatus()));
+            editButton.setOnAction(event -> {
+                Main.setRequest(new Long(cell.getTableRow().getItem().toString().substring(
+                        cell.getTableRow().getItem().toString().indexOf("id=")+3,
+                        cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)
+                )));
 
-        colCost.setCellValueFactory((TableColumn.CellDataFeatures<Request, Number> param)
-                -> new SimpleIntegerProperty(param.getValue().getCost()));
+                Request request = requestService.findRequest(Main.getRequest());
+                request.setStatus("Оплачено");
+                requestService.updateRequest(request);
 
+                Parent newScene = null;
+                try {
+                    newScene = FXMLLoader.load(getClass().getResource("/advertiser.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                Main.getStage().setScene(new Scene(newScene));
+            });
+
+            return cell ;
+        });
+        //setBtnEditCellFactory();
+
+
+        createNew.setOnAction(event -> {
+            Parent newScene = null;
+            try {
+                newScene = FXMLLoader.load(getClass().getResource("/advertReq.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Main.setRequest(-1l);
+            Main.getStage().setScene(new Scene(newScene));
+        });
         //colChange.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
-        setBtnEditCellFactory();
+
+
+        logOutBut.setOnAction(event ->{
+            Parent newScene = null;
+            try {
+                newScene = FXMLLoader.load(getClass().getResource("/auth.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Main.getStage().setScene(new Scene(newScene));
+        });
 
         advertTable.setEditable(true);
         advertTable.setItems(list);
@@ -97,7 +212,9 @@ public class AdvertiserController {
                 = new Callback<TableColumn<Request, String>, TableCell<Request, String>>() {
             @Override
             public TableCell<Request, String> call(TableColumn<Request, String> param) {
+
                 final TableCell<Request, String> cell = new TableCell<Request, String>() {
+
 
                     final Button btn = new Button("Подробнее");
                     @Override
