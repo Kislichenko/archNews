@@ -2,8 +2,8 @@ package com.spbstu.archNews.models;
 
 public enum PersonType {
     ADVERT_MANAGER("advert manager"),
-    INFO_MANAGER ("info manager"),
-    REPORTER ("reporter"),
+    INFO_MANAGER("info manager"),
+    REPORTER("reporter"),
     USER("user");
 
     private String title;

@@ -3,8 +3,6 @@ package com.spbstu.archNews.services;
 import com.spbstu.archNews.models.Person;
 import com.spbstu.archNews.repositories.PersonDAO;
 
-import java.util.List;
-
 public class PersonService {
     private PersonDAO usersDao = new PersonDAO();
 
@@ -27,9 +25,9 @@ public class PersonService {
         usersDao.update(user);
     }
 
-    public boolean auth(String login, String password){
+    public boolean auth(String login, String password) {
         Person person = usersDao.findByLogin(login);
-        if(person.getPassword().equals(password)){
+        if (person.getPassword().equals(password)) {
             return true;
         }
         return false;

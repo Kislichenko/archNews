@@ -2,7 +2,6 @@ package com.spbstu.archNews.services;
 
 import com.spbstu.archNews.models.Request;
 import com.spbstu.archNews.repositories.RequestDAO;
-import com.spbstu.archNews.repositories.RequestDAO;
 
 import java.util.List;
 
@@ -29,11 +28,9 @@ public class RequestService {
         requestsDao.update(request);
     }
 
-    public List<Request> getAll(){
+    public List<Request> getAll() {
         return requestsDao.getRequests();
     }
-
-
 
 
 }

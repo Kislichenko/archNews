@@ -1,6 +1,5 @@
 package com.spbstu.archNews.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +13,7 @@ import javax.persistence.*;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "login")
@@ -37,20 +36,20 @@ public class Person {
     private PersonType typeOfUser;
 
 
-    public Person(String login, String name, String email, String phoneNumber, String password, PersonType typeOfUser){
+    public Person(String login, String name, String email, String phoneNumber, String password, PersonType typeOfUser) {
         this.login = login;
         this.email = email;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.password=password;
+        this.password = password;
         this.typeOfUser = typeOfUser;
     }
 
-    public boolean isAuth(){
+    public boolean isAuth() {
         return false;
     }
 
-    public boolean logOut(){
+    public boolean logOut() {
         return true;
     }
 

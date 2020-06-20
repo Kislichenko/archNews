@@ -1,60 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spbstu.archNews.controller.AdvertReqController">
-  <children>
-      <AnchorPane prefHeight="82.0" prefWidth="640.0" style="-fx-background-color: #333;">
-         <children>
-            <Label layoutX="37.0" layoutY="15.0" text="ArchNews" textFill="WHITE">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-            <Button fx:id="logOutBtn" layoutX="557.0" layoutY="22.0" mnemonicParsing="false" text="Выйти" />
-            <Button fx:id="onMain" layoutX="443.0" layoutY="22.0" mnemonicParsing="false" text="На главную" />
-            <Button fx:id="sendReq" layoutX="299.0" layoutY="22.0" mnemonicParsing="false" text="Отправить заявку" />
-            <Button fx:id="updateBut" layoutX="172.0" layoutY="22.0" mnemonicParsing="false" text="Обновить заявку" />
-         </children>
-      </AnchorPane>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="340.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
-      <children>
-            <Label layoutX="40.0" layoutY="19.0" text="Тип рекламного блока:" />
-            <Label fx:id="inputLabel" layoutX="473.0" layoutY="307.0" text="Вы вошли как advertiser1">
-               <font>
-                  <Font name="System Italic" size="13.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="typeAdBlock" layoutX="264.0" layoutY="14.0" prefHeight="27.0" prefWidth="161.0" />
-            <Label layoutX="40.0" layoutY="55.0" text="Тематика:" />
-            <TextField fx:id="adType" layoutX="264.0" layoutY="50.0" prefHeight="27.0" prefWidth="274.0" />
-            <Label layoutX="40.0" layoutY="87.0" text="Длительность размещения (дней):" />
-            <Label layoutX="40.0" layoutY="120.0" text="Дата начала размещения:" />
-            <Label layoutX="42.0" layoutY="156.0" text="Юридические данные:" />
-            <Label layoutX="42.0" layoutY="188.0" text="Пожелания:" />
-            <TextField fx:id="adDuration" layoutX="264.0" layoutY="82.0" prefHeight="27.0" prefWidth="274.0" />
-            <TextField fx:id="adStart" layoutX="264.0" layoutY="115.0" prefHeight="27.0" prefWidth="274.0" />
-            <TextField fx:id="legalData" layoutX="264.0" layoutY="151.0" prefHeight="27.0" prefWidth="274.0" />
-            <TextField fx:id="description" layoutX="264.0" layoutY="183.0" prefHeight="27.0" prefWidth="274.0" />
-            <Label layoutX="42.0" layoutY="221.0" text="Статус заявки:" />
-            <Label fx:id="statusReq" layoutX="264.0" layoutY="221.0" text="Ожидает оплаты" />
-            <Label layoutX="42.0" layoutY="237.0" text="Дата открытия заявки:" />
-            <Label fx:id="openAdDate" layoutX="264.0" layoutY="237.0" text="-" />
-            <Label layoutX="42.0" layoutY="254.0" text="Стоимость рекламы:" />
-            <Label fx:id="cost" layoutX="260.0" layoutY="254.0" text="-1 руб" />
-            <Label layoutX="42.0" layoutY="271.0" text="Дата закрытия заявки:" />
-            <Label fx:id="closeAdDate" layoutX="264.0" layoutY="271.0" text="-" />
-            <Label layoutX="42.0" layoutY="288.0" text="Назначенный менеджер:" />
-            <Label fx:id="manager" layoutX="260.0" layoutY="288.0" text="Иванов Иван Иванович (id - 777)" />
-            <Button fx:id="pay" layoutX="531.0" layoutY="249.0" mnemonicParsing="false" text="Оплатить" />
-            <TextField fx:id="costTextField" layoutX="260.0" layoutY="249.0" prefHeight="27.0" prefWidth="234.0" />
-      </children>
-    </AnchorPane>
-  </children>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1"
+      fx:controller="com.spbstu.archNews.controller.AdvertReqController">
+    <children>
+        <AnchorPane prefHeight="82.0" prefWidth="640.0" style="-fx-background-color: #333;">
+            <children>
+                <Label layoutX="37.0" layoutY="15.0" text="ArchNews" textFill="WHITE">
+                    <font>
+                        <Font size="26.0"/>
+                    </font>
+                </Label>
+                <Button fx:id="logOutBtn" layoutX="557.0" layoutY="22.0" mnemonicParsing="false" text="Выйти"/>
+                <Button fx:id="onMain" layoutX="443.0" layoutY="22.0" mnemonicParsing="false" text="На главную"/>
+                <Button fx:id="sendReq" layoutX="299.0" layoutY="22.0" mnemonicParsing="false" text="Отправить заявку"/>
+                <Button fx:id="updateBut" layoutX="172.0" layoutY="22.0" mnemonicParsing="false"
+                        text="Обновить заявку"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="340.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Label layoutX="40.0" layoutY="19.0" text="Тип рекламного блока:"/>
+                <Label fx:id="inputLabel" layoutX="473.0" layoutY="307.0" text="Вы вошли как advertiser1">
+                    <font>
+                        <Font name="System Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <ComboBox fx:id="typeAdBlock" layoutX="264.0" layoutY="14.0" prefHeight="27.0" prefWidth="161.0"/>
+                <Label layoutX="40.0" layoutY="55.0" text="Тематика:"/>
+                <TextField fx:id="adType" layoutX="264.0" layoutY="50.0" prefHeight="27.0" prefWidth="274.0"/>
+                <Label layoutX="40.0" layoutY="87.0" text="Длительность размещения (дней):"/>
+                <Label layoutX="40.0" layoutY="120.0" text="Дата начала размещения:"/>
+                <Label layoutX="42.0" layoutY="156.0" text="Юридические данные:"/>
+                <Label layoutX="42.0" layoutY="188.0" text="Пожелания:"/>
+                <TextField fx:id="adDuration" layoutX="264.0" layoutY="82.0" prefHeight="27.0" prefWidth="274.0"/>
+                <TextField fx:id="adStart" layoutX="264.0" layoutY="115.0" prefHeight="27.0" prefWidth="274.0"/>
+                <TextField fx:id="legalData" layoutX="264.0" layoutY="151.0" prefHeight="27.0" prefWidth="274.0"/>
+                <TextField fx:id="description" layoutX="264.0" layoutY="183.0" prefHeight="27.0" prefWidth="274.0"/>
+                <Label layoutX="42.0" layoutY="221.0" text="Статус заявки:"/>
+                <Label fx:id="statusReq" layoutX="264.0" layoutY="221.0" text="Ожидает оплаты"/>
+                <Label layoutX="42.0" layoutY="237.0" text="Дата открытия заявки:"/>
+                <Label fx:id="openAdDate" layoutX="264.0" layoutY="237.0" text="-"/>
+                <Label layoutX="42.0" layoutY="254.0" text="Стоимость рекламы:"/>
+                <Label fx:id="cost" layoutX="260.0" layoutY="254.0" text="-1 руб"/>
+                <Label layoutX="42.0" layoutY="271.0" text="Дата закрытия заявки:"/>
+                <Label fx:id="closeAdDate" layoutX="264.0" layoutY="271.0" text="-"/>
+                <Label layoutX="42.0" layoutY="288.0" text="Назначенный менеджер:"/>
+                <Label fx:id="manager" layoutX="260.0" layoutY="288.0" text="Иванов Иван Иванович (id - 777)"/>
+                <Button fx:id="pay" layoutX="531.0" layoutY="249.0" mnemonicParsing="false" text="Оплатить"/>
+                <TextField fx:id="costTextField" layoutX="260.0" layoutY="249.0" prefHeight="27.0" prefWidth="234.0"/>
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>

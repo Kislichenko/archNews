@@ -1,10 +1,6 @@
 package com.spbstu.archNews;
 
 
-import com.spbstu.archNews.models.Person;
-import com.spbstu.archNews.models.Request;
-import com.spbstu.archNews.services.PersonService;
-import com.spbstu.archNews.services.RequestService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,11 +22,11 @@ public class Main extends Application {
         return guiStage;
     }
 
-    public static Long getRequest(){
+    public static Long getRequest() {
         return requestInd;
     }
 
-    public static void setRequest(Long req){
+    public static void setRequest(Long req) {
         requestInd = req;
     }
 

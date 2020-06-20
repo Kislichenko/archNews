@@ -2,7 +2,6 @@ package com.spbstu.archNews.repositories;
 
 import com.spbstu.archNews.models.Person;
 import com.spbstu.archNews.models.Request;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -11,7 +10,8 @@ import org.hibernate.cfg.Configuration;
 public class HibernateSessionFactoryUtil {
     private static SessionFactory sessionFactory;
 
-    private HibernateSessionFactoryUtil() {}
+    private HibernateSessionFactoryUtil() {
+    }
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {

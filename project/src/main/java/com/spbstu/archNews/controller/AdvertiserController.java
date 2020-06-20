@@ -1,11 +1,5 @@
 package com.spbstu.archNews.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.spbstu.archNews.Main;
 import com.spbstu.archNews.models.Request;
 import com.spbstu.archNews.services.RequestService;
@@ -17,10 +11,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.util.Callback;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class AdvertiserController {
     ObservableList list = FXCollections.observableArrayList();
@@ -69,13 +69,13 @@ public class AdvertiserController {
         getData();
     }
 
-    void getData(){
+    void getData() {
 
 
         list.removeAll(list);
         List<Request> requests = requestService.getAll();
 
-        if(requests != null && requests.size()!=0) {
+        if (requests != null && requests.size() != 0) {
             list.addAll(requests);
 
             colName.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
@@ -95,7 +95,6 @@ public class AdvertiserController {
                     -> new SimpleStringProperty(param.getValue().getStatus()));
 
 
-
             colChange.setCellFactory(col -> {
                 Button editButton = new Button("Подробнее");
                 TableCell<Request, String> cell = new TableCell<Request, String>() {
@@ -113,8 +112,8 @@ public class AdvertiserController {
                 editButton.setOnAction(event -> {
 
                     Main.setRequest(new Long(cell.getTableRow().getItem().toString().substring(
-                            cell.getTableRow().getItem().toString().indexOf("id=")+3,
-                            cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)
+                            cell.getTableRow().getItem().toString().indexOf("id=") + 3,
+                            cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=") + 1)
                     )));
 
                     Parent newScene = null;
@@ -127,7 +126,7 @@ public class AdvertiserController {
                     Main.getStage().setScene(new Scene(newScene));
                 });
 
-                return cell ;
+                return cell;
             });
             //setBtnEditCellFactory();
         }
@@ -149,8 +148,8 @@ public class AdvertiserController {
 
             editButton.setOnAction(event -> {
                 Main.setRequest(new Long(cell.getTableRow().getItem().toString().substring(
-                        cell.getTableRow().getItem().toString().indexOf("id=")+3,
-                        cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)
+                        cell.getTableRow().getItem().toString().indexOf("id=") + 3,
+                        cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=") + 1)
                 )));
 
                 Request request = requestService.findRequest(Main.getRequest());
@@ -165,11 +164,10 @@ public class AdvertiserController {
                 }
 
 
-
                 Main.getStage().setScene(new Scene(newScene));
             });
 
-            return cell ;
+            return cell;
         });
         //setBtnEditCellFactory();
 
@@ -188,7 +186,7 @@ public class AdvertiserController {
         //colChange.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
 
 
-        logOutBut.setOnAction(event ->{
+        logOutBut.setOnAction(event -> {
             Parent newScene = null;
             try {
                 newScene = FXMLLoader.load(getClass().getResource("/auth.fxml"));
@@ -214,6 +212,7 @@ public class AdvertiserController {
 
 
                     final Button btn = new Button("Подробнее");
+
                     @Override
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);

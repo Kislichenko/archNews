@@ -1,11 +1,5 @@
 package com.spbstu.archNews.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.spbstu.archNews.Main;
 import com.spbstu.archNews.models.Request;
 import com.spbstu.archNews.services.RequestService;
@@ -21,6 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class AdManagerController {
 
@@ -63,13 +63,13 @@ public class AdManagerController {
         List<Request> tmp = requestService.getAll();
         List<Request> requests = new ArrayList<>();
 
-        for(int i=0;i<tmp.size();i++){
-            if(tmp.get(i).getStatus().equals("Ожидает проверки менеджером")){
+        for (int i = 0; i < tmp.size(); i++) {
+            if (tmp.get(i).getStatus().equals("Ожидает проверки менеджером")) {
                 requests.add(tmp.get(i));
             }
         }
 
-        if(requests != null && requests.size()!=0) {
+        if (requests != null && requests.size() != 0) {
             list.addAll(requests);
             colName.setCellValueFactory((TableColumn.CellDataFeatures<Request, String> param)
                     -> new SimpleStringProperty(param.getValue().getId().toString()));
@@ -88,7 +88,6 @@ public class AdManagerController {
                     -> new SimpleStringProperty(param.getValue().getStatus()));
 
 
-
             colChange.setCellFactory(col -> {
                 Button editButton = new Button("Подробнее");
                 TableCell<Request, String> cell = new TableCell<Request, String>() {
@@ -105,8 +104,8 @@ public class AdManagerController {
 
                 editButton.setOnAction(event -> {
                     Main.setRequest(new Long(cell.getTableRow().getItem().toString().substring(
-                            cell.getTableRow().getItem().toString().indexOf("id=")+3,
-                            cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=")+1)
+                            cell.getTableRow().getItem().toString().indexOf("id=") + 3,
+                            cell.getTableRow().getItem().toString().indexOf(",", cell.getTableRow().getItem().toString().indexOf("id=") + 1)
                     )));
 
                     Parent newScene = null;
@@ -117,16 +116,15 @@ public class AdManagerController {
                     }
 
 
-
                     Main.getStage().setScene(new Scene(newScene));
                 });
 
-                return cell ;
+                return cell;
             });
         }
 
 
-        logOutBut.setOnAction(event ->{
+        logOutBut.setOnAction(event -> {
             Parent newScene = null;
             try {
                 newScene = FXMLLoader.load(getClass().getResource("/auth.fxml"));

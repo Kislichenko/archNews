@@ -1,6 +1,5 @@
 package com.spbstu.archNews.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +12,7 @@ import javax.persistence.*;
 public class Request {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "ad_block_type")
@@ -55,12 +54,12 @@ public class Request {
                    String openAdDate,
                    Integer cost,
                    String type,
-                   String description){
+                   String description) {
         this.adBlockType = adBlockType;
         this.adDuration = adDuration;
         this.startDate = startDate;
         this.legalData = legalData;
-        this.status=status;
+        this.status = status;
         this.openAdDate = openAdDate;
         this.cost = cost;
         this.type = type;

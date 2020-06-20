@@ -1,13 +1,9 @@
 package com.spbstu.archNews.repositories;
 
 import com.spbstu.archNews.models.Person;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
-
-import java.util.List;
 
 public class PersonDAO {
 
@@ -15,7 +11,7 @@ public class PersonDAO {
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Person.class, id);
     }
 
-    public Person findByLogin(String login){
+    public Person findByLogin(String login) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         Query query = session.createQuery("from Person where login =:login ")

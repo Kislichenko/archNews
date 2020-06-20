@@ -1,11 +1,5 @@
 package com.spbstu.archNews.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.ResourceBundle;
-
 import com.spbstu.archNews.Main;
 import com.spbstu.archNews.models.AdBlockType;
 import com.spbstu.archNews.models.Request;
@@ -18,8 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodTextRun;
-import sun.nio.cs.ext.MacArabic;
+
+import java.io.IOException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.ResourceBundle;
 
 public class AdvertReqController {
 
@@ -88,7 +86,7 @@ public class AdvertReqController {
     @FXML
     void initialize() {
 
-        if(Main.getRequest()!=-1l){
+        if (Main.getRequest() != -1l) {
             Request request = requestService.findRequest(Main.getRequest());
             typeAdBlock.setValue(request.getAdBlockType());
             adType.setText(request.getType());
@@ -136,10 +134,10 @@ public class AdvertReqController {
             request.setOpenAdDate(openAdDate.getText());
             request.setDescription(description.getText());
 
-            if(!Main.getName().equals("login1")) {
+            if (!Main.getName().equals("login1")) {
                 request.setCost(new Integer(costTextField.getText()));
                 request.setStatus("Ожидает оплаты");
-            }else {
+            } else {
                 request.setCost(-1);
                 request.setStatus("Ожидает проверки менеджером");
             }
@@ -152,9 +150,9 @@ public class AdvertReqController {
 
             Parent newScene = null;
             try {
-                if(!Main.getName().equals("login1")) {
+                if (!Main.getName().equals("login1")) {
                     newScene = FXMLLoader.load(getClass().getResource("/admanager.fxml"));
-                }else {
+                } else {
                     newScene = FXMLLoader.load(getClass().getResource("/advertiser.fxml"));
                 }
             } catch (IOException e) {
@@ -197,7 +195,7 @@ public class AdvertReqController {
 
         });
 
-        logOutBtn.setOnAction(event ->{
+        logOutBtn.setOnAction(event -> {
             Parent newScene = null;
             try {
                 newScene = FXMLLoader.load(getClass().getResource("/auth.fxml"));
@@ -208,14 +206,14 @@ public class AdvertReqController {
             Main.getStage().setScene(new Scene(newScene));
         });
 
-        if(!Main.getName().equals("login1")){
+        if (!Main.getName().equals("login1")) {
             sendReq.setVisible(false);
             pay.setVisible(false);
             cost.setVisible(false);
             updateBut.setText("Подтвердить заявку");
             inputLabel.setText("Вы вошли как admanager2");
             costTextField.setVisible(true);
-        }else{
+        } else {
             sendReq.setVisible(true);
             pay.setVisible(true);
             cost.setVisible(true);
